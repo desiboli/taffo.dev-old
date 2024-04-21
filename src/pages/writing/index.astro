@@ -17,9 +17,12 @@ const items: BreadcrumbsProps[] = [
       <Header title="Writing" breadcrumbItems={items} />
 
       <div class="flex flex-col text-sm mb-10">
-        <p>A space for storing insights</p>
+        <p>
+          A space for storing insights – by <a href="/" class="link ml-1"
+            >Taffo</a
+          >
+        </p>
         <div class="flex items-center gap-x-6 mt-1">
-          <p>by <a href="/" class="link ml-1">Taffo</a></p>
           <Breadcrumbs client:load breadcrumbItems={items} />
         </div>
       </div>
