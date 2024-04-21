@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import GalleryGrid from '@/components/GalleryGrid.astro';
+import { AtSign } from 'lucide-react';
+import Github from '@/assets/icons/github.svg?raw';
+import Twitter from '@/assets/icons/x.svg?raw';
+import LinkedIn from '@/assets/icons/linkedin.svg?raw';
+---
+
+<BaseLayout>
+  <section>
+    <div class="container">
+      <Header
+        title="Mustafa Adam Alshammaa ・ Taffo.dev"
+        breadcrumbItems={[]}
+      />
+
+      <p class="mt-10">
+        Driven by the art of crafting <b>seamless</b> user experiences and transforming
+        intricate concepts into intuitive interfaces. <b>Dedicated</b> to continuous
+        exploration and introspection, with a <b>commitment</b> to documenting every
+        enlightening journey.
+      </p>
+
+      <GalleryGrid />
+
+      <p class="mt-10">
+        Currently working as a <a
+          href="https://thestellarcollective.se/"
+          target="_blank"
+          class="external-link">Stellar</a
+        > with
+        <a href="https://www.rco.se/" class="external-link">RCO Security</a>
+      </p>
+
+      <div class="mt-1">
+        <a href="#" class="icon-link">
+          <AtSign className="w-4 h-4" />
+        </a>
+        <a href="#" class="icon-link w-6 h-6">
+          <Fragment set:html={Github} />
+        </a>
+        <a href="#" class="icon-link w-6 h-6">
+          <Fragment set:html={Twitter} />
+        </a>
+        <a href="#" class="icon-link w-6 h-6">
+          <Fragment set:html={LinkedIn} />
+        </a>
+      </div>
+
+      <div class="grid grid-cols-6 mt-10">
+        <h2
+          class="text-foreground-secondary font-display uppercase col-span-full mb-4 md:col-span-1 md:mb-0"
+        >
+          My space
+        </h2>
+        <nav class="col-span-2 md:col-span-1">
+          <ul class="space-y-4 whitespace-nowrap">
+            <li>
+              <a href="/writing" class="link">Writing</a>
+            </li>
+            <li>
+              <a href="/notes" class="link">Notes</a>
+            </li>
+            <li>
+              <a href="/playground" class="link">Playground</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="col-span-4 flex flex-col justify-between">
+          <span class="text-xs text-foreground-secondary"
+            >A space for storing insights</span
+          >
+          <span class="text-xs text-foreground-secondary"
+            >A space for recording useful knowledge</span
+          >
+          <span class="text-xs text-foreground-secondary"
+            >A space for creating something interesting</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

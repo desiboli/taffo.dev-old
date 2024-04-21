@@ -1,0 +1,63 @@
+---
+import '@/styles/globals.css';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import TailwindIndicator from '@/components/TailwindIndicator.astro';
+
+const isProd = import.meta.env.PROD;
+---
+
+<script is:inline>
+  function setDarkMode(document) {
+    const getThemePreference = () => {
+      if (
+        typeof localStorage !== 'undefined' &&
+        localStorage.getItem('theme')
+      ) {
+        return localStorage.getItem('theme');
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'theme-light';
+    };
+    const isDark = getThemePreference() === 'dark';
+    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+    if (typeof localStorage !== 'undefined') {
+      const observer = new MutationObserver(() => {
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'theme-light');
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
+  }
+
+  setDarkMode(document);
+
+  document.addEventListener('astro:before-swap', (ev) => {
+    // Pass the incoming document to set the theme on it
+    setDarkMode(ev.newDocument);
+  });
+</script>
+
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="min-h-svh w-full bg-background relative font-body">
+    <div
+      class="bg-background/95 h-28 fixed left-0 top-0 w-full backdrop-blur-sm gradient-mask-b-0"
+    >
+    </div>
+    <main class="max-w-screen-sm mx-auto pt-32">
+      <slot />
+    </main>
+
+    <Footer />
+    {!isProd && <TailwindIndicator />}
+  </body>
+</html>

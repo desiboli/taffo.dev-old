@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb';
+
+const items: BreadcrumbsProps[] = [
+  { href: '/', label: 'Home' },
+  { label: 'Writing' },
+  { href: '/notes', label: 'Notes' },
+  { href: '/playground', label: 'Playground' },
+];
+---
+
+<BaseLayout>
+  <section>
+    <div class="container">
+      <Header title="Writing" breadcrumbItems={items} />
+
+      <div class="flex flex-col text-sm mb-10">
+        <p>A space for storing insights</p>
+        <div class="flex items-center gap-x-6 mt-1">
+          <p>by <a href="/" class="link ml-1">Taffo</a></p>
+          <Breadcrumbs client:load breadcrumbItems={items} />
+        </div>
+      </div>
+
+      <div class="columns-1 md:columns-2 text-sm text-justify">
+        <p>
+          I can create concepts here that catch my attention. Developing a
+          writing habit and sharing what I learn are my goals, with the hope
+          that they may help others and myself in the future.
+        </p>
+        <p>
+          If you would care to write me to discuss any of these thoughts or if
+          you are so kind as to correct my thinking, that would be greatly
+          appreciated.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

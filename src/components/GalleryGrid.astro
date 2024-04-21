@@ -1,0 +1,72 @@
+---
+import Picture1 from '@/assets/images/picture1.webp';
+import Picture2 from '@/assets/images/picture2.webp';
+import Picture3 from '@/assets/images/picture3.webp';
+import Picture4 from '@/assets/images/picture4.webp';
+import Picture5 from '@/assets/images/picture6.webp';
+import Picture6 from '@/assets/images/picture5.webp';
+import { Image } from 'astro:assets';
+---
+
+<div class="my-8 columns-2 gap-4 md:columns-3">
+  <div class="relative mb-4 h-40">
+    <Image
+      src={Picture4}
+      widths={[240, 540, 720, Picture4.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Picture4.width}px`}
+      loading="eager"
+      alt="Me and my son laying on the bed."
+      class="absolute w-full h-full inset-0 object-cover rounded-lg"
+    />
+  </div>
+  <div class="relative mb-4 h-80 md:mb-0">
+    <Image
+      src={Picture1}
+      widths={[240, 540, 720, Picture1.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Picture1.width}px`}
+      loading="eager"
+      alt="Me and my son, Noél."
+      class="absolute w-full h-full inset-0 object-cover rounded-lg"
+    />
+  </div>
+  <div class="relative h-40 md:mb-4 md:h-80">
+    <Image
+      src={Picture2}
+      widths={[240, 540, 720, Picture2.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Picture2.width}px`}
+      loading="eager"
+      alt="Me and my son, Noél."
+      class="absolute w-full h-full inset-0 object-cover rounded-lg"
+    />
+  </div>
+  <div class="relative mb-4 h-40 md:mb-0">
+    <Image
+      src={Picture3}
+      widths={[240, 540, 720, Picture3.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Picture3.width}px`}
+      loading="eager"
+      alt="Me and my son, Noél."
+      class="absolute w-full h-full inset-0 object-cover object-top rounded-lg"
+    />
+  </div>
+  <div class="relative mb-4 h-40">
+    <Image
+      src={Picture6}
+      widths={[240, 540, 720, Picture6.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Picture6.width}px`}
+      loading="eager"
+      alt="Me and my son, Noél."
+      class="absolute w-full h-full inset-0 object-cover rounded-lg"
+    />
+  </div>
+  <div class="relative h-80">
+    <Image
+      src={Picture5}
+      widths={[240, 540, 720, Picture5.width]}
+      sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${Picture5.width}px`}
+      loading="eager"
+      alt="Me and my son, Noél."
+      class="absolute w-full h-full inset-0 object-cover rounded-lg"
+    />
+  </div>
+</div>
