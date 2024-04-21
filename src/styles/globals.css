@@ -14,8 +14,8 @@
 
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 3% 6%;
-    --foreground-secondary: 0 3% 6% / 25%;
+    --foreground: 0 3% 6%; /* #100F0F */
+    --foreground-secondary: 0 3% 6% / 76%;
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -71,7 +71,7 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
+    --border: 0 0% 15% /* #252525 */;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
@@ -84,6 +84,18 @@
   body {
     @apply bg-background text-foreground;
   }
+  body::before {
+    content: '';
+    filter: url(./../assets/noise.svg#noiseFilter);
+    z-index: 99999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 15%;
+  }
   .external-link {
     @apply text-foreground;
   }
@@ -93,7 +105,7 @@
   }
   .external-link::after {
     content: '';
-    @apply bg-link bg-no-repeat bg-cover inline-block h-[.875rem] w-[.875rem];
+    @apply bg-link-dark dark:bg-link bg-no-repeat bg-cover inline-block h-[.875rem] w-[.875rem];
   }
   .link::before,
   .external-link::before {
@@ -102,7 +114,7 @@
   }
   .link::before:hover,
   .external-link::before:hover {
-    @apply bg-foreground/20 h-full;
+    @apply bg-foreground/5 dark:bg-foreground/15 h-full;
   }
   .icon-link {
     @apply text-foreground-secondary relative inline-block p-1;

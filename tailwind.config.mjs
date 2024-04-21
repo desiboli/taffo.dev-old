@@ -16,6 +16,9 @@ export default {
     extend: {
       backgroundImage: {
         link: 'url("./src/assets/icons/arrow-up-right.svg")',
+        'link-dark': 'url("./src/assets/icons/arrow-up-right-dark.svg")',
+        'logo-dark': 'url("./src/assets/logo-dark.svg")',
+        logo: 'url("./src/assets/logo.svg")',
       },
       colors: {
         border: 'hsl(var(--border))',

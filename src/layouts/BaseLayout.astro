@@ -48,12 +48,12 @@ const isProd = import.meta.env.PROD;
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="min-h-svh w-full bg-background relative font-body">
+  <body class="min-h-svh w-full bg-background relative font-body flex flex-col">
     <div
       class="bg-background/95 h-28 fixed left-0 top-0 w-full backdrop-blur-sm gradient-mask-b-0"
     >
     </div>
-    <main class="max-w-screen-sm mx-auto pt-32">
+    <main class="max-w-screen-sm mx-auto pt-32 flex-1">
       <slot />
     </main>
 

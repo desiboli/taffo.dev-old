@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb';
+import { getCollection } from 'astro:content';
+import FormattedDate from '@/components/FormattedDate.astro';
 
 const items: BreadcrumbsProps[] = [
   { href: '/', label: 'Home' },
@@ -9,6 +11,10 @@ const items: BreadcrumbsProps[] = [
   { href: '/notes', label: 'Notes' },
   { href: '/playground', label: 'Playground' },
 ];
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
 
 <BaseLayout>
@@ -39,6 +45,28 @@ const items: BreadcrumbsProps[] = [
           appreciated.
         </p>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <ul class="border-t mt-10 py-10 space-y-4 [&:hover>li]:opacity-50">
+        {
+          posts.map((post) => (
+            <li class="transition hover:!opacity-100">
+              <a
+                href={`/blog/${post.slug}/`}
+                class="flex justify-between items-center py-4"
+              >
+                <h4 class="text-xl">{post.data.title}</h4>
+                <p class="date">
+                  <FormattedDate date={post.data.pubDate} />
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 </BaseLayout>
