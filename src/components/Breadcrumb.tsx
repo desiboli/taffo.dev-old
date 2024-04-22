@@ -9,10 +9,12 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 export type BreadcrumbsProps = {
   href?: string;
   label: string;
+  isActive?: boolean;
 };
 
 interface Props {
@@ -30,7 +32,10 @@ export function Breadcrumbs({ breadcrumbItems }: Props) {
                 <>
                   <BreadcrumbLink
                     href={item.href}
-                    className="text-foreground-secondary"
+                    className={cn({
+                      'text-foreground': item.isActive,
+                      'text-foreground-secondary': !item.isActive,
+                    })}
                   >
                     {item.label}
                   </BreadcrumbLink>

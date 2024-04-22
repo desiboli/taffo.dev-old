@@ -1,48 +1,106 @@
 ---
+import '@/styles/mdx.css';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import TailwindIndicator from '@/components/TailwindIndicator.astro';
+import Header from '@/components/Header.astro';
+import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb';
+import { GiscusSection } from '@/components/giscus';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const isProd = import.meta.env.PROD;
+
+const items: BreadcrumbsProps[] = [
+  { href: '/', label: 'Home' },
+  { href: '/writing', label: 'Writing', isActive: true },
+  { href: '/notes', label: 'Notes' },
+  { href: '/playground', label: 'Playground' },
+];
 ---
+
+<script is:inline>
+  function setDarkMode(document) {
+    const getThemePreference = () => {
+      if (
+        typeof localStorage !== 'undefined' &&
+        localStorage.getItem('theme')
+      ) {
+        return localStorage.getItem('theme');
+      }
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'theme-light';
+    };
+    const isDark = getThemePreference() === 'dark';
+    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+    if (typeof localStorage !== 'undefined') {
+      const observer = new MutationObserver(() => {
+        const isDark = document.documentElement.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'theme-light');
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
+  }
+
+  setDarkMode(document);
+
+  document.addEventListener('astro:before-swap', (ev) => {
+    // Pass the incoming document to set the theme on it
+    setDarkMode(ev.newDocument);
+  });
+</script>
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
   </head>
+  <body class="min-h-svh w-full bg-background relative font-body flex flex-col">
+    <div
+      class="bg-background/95 h-28 fixed left-0 top-0 w-full backdrop-blur-sm gradient-mask-b-0"
+    >
+    </div>
+    <main class="max-w-screen-sm w-full mx-auto pt-32 flex-1">
+      <div class="container">
+        <Header title={`${title}`} breadcrumbItems={[]} />
 
-  <body>
-    <main>
-      <article>
-        <div class="hero-image">
-          {
-            heroImage && (
-              <img width={1020} height={510} src={heroImage} alt="" />
-            )
-          }
+        <div class="flex flex-col text-sm mb-10">
+          <p>
+            <FormattedDate date={pubDate} />
+            {
+              updatedDate && (
+                <>
+                  ・ Last updated on <FormattedDate date={updatedDate} />
+                </>
+              )
+            }
+          </p>
+          <div class="flex items-center gap-x-6 mt-1">
+            <Breadcrumbs client:load breadcrumbItems={items} />
+          </div>
         </div>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1>{title}</h1>
-            <hr />
+
+        <article>
+          <div class="mb-10">
+            {
+              heroImage && (
+                <img width={1020} height={510} src={heroImage} alt="" />
+              )
+            }
           </div>
           <slot />
-        </div>
-      </article>
+          <GiscusSection client:load className="mx-auto mt-20" />
+        </article>
+      </div>
     </main>
     <Footer />
+    {!isProd && <TailwindIndicator />}
   </body>
 </html>

@@ -13,32 +13,30 @@ const items: BreadcrumbsProps[] = [
 
 <BaseLayout>
   <section>
-    <div class="container">
-      <Header title="Playground" breadcrumbItems={items} />
+    <Header title="Playground" breadcrumbItems={items} />
 
-      <div class="flex flex-col text-sm mb-10">
-        <p>
-          A space for creating something interesting – by <a
-            href="/"
-            class="link ml-1">Taffo</a
-          >
-        </p>
-        <div class="flex items-center gap-x-6 mt-1">
-          <Breadcrumbs client:load breadcrumbItems={items} />
-        </div>
+    <div class="flex flex-col text-sm mb-10">
+      <p>
+        A space for creating something interesting – by <a
+          href="/"
+          class="link ml-1">Taffo</a
+        >
+      </p>
+      <div class="flex items-center gap-x-6 mt-1">
+        <Breadcrumbs client:load breadcrumbItems={items} />
       </div>
+    </div>
 
-      <div class="columns-1 md:columns-2 text-sm text-justify">
-        <p>
-          In my Playground, I tinker with frontend development to build cool
-          stuff. It's where I experiment with design and interactivity, trying
-          out new ideas and technologies.
-        </p>
-        <p>
-          Think of it as a sandbox for creative exploration, where every project
-          is a chance to learn and have fun.
-        </p>
-      </div>
+    <div class="columns-1 md:columns-2 text-sm text-justify">
+      <p>
+        In my Playground, I tinker with frontend development to build cool
+        stuff. It's where I experiment with design and interactivity, trying out
+        new ideas and technologies.
+      </p>
+      <p>
+        Think of it as a sandbox for creative exploration, where every project
+        is a chance to learn and have fun.
+      </p>
     </div>
   </section>
 </BaseLayout>

@@ -8,6 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { changeGiscusTheme } from './giscus';
 
 export function ModeToggle() {
   const [theme, setThemeState] = React.useState<
@@ -24,6 +25,7 @@ export function ModeToggle() {
       theme === 'dark' ||
       (theme === 'system' &&
         window.matchMedia('(prefers-color-scheme: dark)').matches);
+    changeGiscusTheme(isDark ? 'dark' : 'theme-light');
     document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
   }, [theme]);
 

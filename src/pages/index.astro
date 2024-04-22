@@ -8,73 +8,66 @@ import LinkedIn from '@/assets/icons/linkedin.svg?raw';
 ---
 
 <BaseLayout>
-  <section>
-    <div class="container">
-      <Header
-        title="Mustafa Adam Alshammaa ・ Taffo.dev"
-        breadcrumbItems={[]}
-      />
+  <Header title="Mustafa Adam Alshammaa ・ Taffo.dev" breadcrumbItems={[]} />
 
-      <p class="mt-10">
-        Driven by the art of crafting <b>seamless</b> user experiences and transforming
-        intricate concepts into intuitive interfaces. <b>Dedicated</b> to continuous
-        exploration and introspection, with a <b>commitment</b> to documenting every
-        enlightening journey.
-      </p>
+  <p class="mt-10">
+    Driven by the art of crafting <b>seamless</b> user experiences and transforming
+    intricate concepts into intuitive interfaces. <b>Dedicated</b> to continuous
+    exploration and introspection, with a <b>commitment</b> to documenting every
+    enlightening journey.
+  </p>
 
-      <p class="mt-10">
-        Currently working as a <a
-          href="https://thestellarcollective.se/"
-          target="_blank"
-          class="external-link">Stellar</a
-        > with
-        <a href="https://www.rco.se/" class="external-link">RCO Security</a>
-      </p>
+  <p class="mt-10">
+    Currently working as a <a
+      href="https://thestellarcollective.se/"
+      target="_blank"
+      class="external-link">Stellar</a
+    > with
+    <a href="https://www.rco.se/" class="external-link">RCO Security</a>
+  </p>
 
-      <div class="mt-1">
-        <a href="#" class="icon-link">
-          <AtSign className="w-4 h-4" />
-        </a>
-        <a href="#" class="icon-link w-6 h-6">
-          <Fragment set:html={Github} />
-        </a>
-        <a href="#" class="icon-link w-6 h-6">
-          <Fragment set:html={Twitter} />
-        </a>
-        <a href="#" class="icon-link w-6 h-6">
-          <Fragment set:html={LinkedIn} />
-        </a>
-      </div>
+  <div class="mt-1">
+    <a href="#" class="icon-link">
+      <AtSign className="w-4 h-4" />
+    </a>
+    <a href="#" class="icon-link w-6 h-6">
+      <Fragment set:html={Github} />
+    </a>
+    <a href="#" class="icon-link w-6 h-6">
+      <Fragment set:html={Twitter} />
+    </a>
+    <a href="#" class="icon-link w-6 h-6">
+      <Fragment set:html={LinkedIn} />
+    </a>
+  </div>
 
-      <div class="grid grid-cols-4 mt-10">
-        <h2
-          class="text-foreground-secondary font-display uppercase col-span-full mb-4 md:col-span-1 md:mb-0"
-        >
-          My space
-        </h2>
-        <nav class="col-span-3">
-          <ul class="space-y-4 whitespace-nowrap">
-            <li class="space-y-1">
-              <a href="/writing" class="link">Writing</a>
-              <p class="text-xs text-foreground-secondary">
-                A space for storing insights
-              </p>
-            </li>
-            <li class="space-y-1">
-              <a href="/notes" class="link">Notes</a>
-              <p class="text-xs text-foreground-secondary">
-                A space for recording useful knowledge
-              </p>
-            </li>
-            <li class="space-y-1">
-              <a href="/playground" class="link">Playground</a>
-              <p class="text-xs text-foreground-secondary">
-                A space for creating something interesting
-              </p>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </section>
+  <div class="grid grid-cols-4 mt-10">
+    <h2
+      class="text-foreground-secondary font-display uppercase col-span-full mb-4 md:col-span-1 md:mb-0"
+    >
+      My space
+    </h2>
+    <nav class="col-span-3">
+      <ul class="space-y-4 whitespace-nowrap">
+        <li class="space-y-1">
+          <a href="/writing" class="link">Writing</a>
+          <p class="text-xs text-foreground-secondary">
+            A space for storing insights
+          </p>
+        </li>
+        <li class="space-y-1">
+          <a href="/notes" class="link">Notes</a>
+          <p class="text-xs text-foreground-secondary">
+            A space for recording useful knowledge
+          </p>
+        </li>
+        <li class="space-y-1">
+          <a href="/playground" class="link">Playground</a>
+          <p class="text-xs text-foreground-secondary">
+            A space for creating something interesting
+          </p>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </BaseLayout>
