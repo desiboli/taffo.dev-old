@@ -18,6 +18,7 @@ export function ModeToggle() {
   React.useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains('dark');
     setThemeState(isDarkMode ? 'dark' : 'theme-light');
+    changeGiscusTheme(isDarkMode ? 'dark' : 'theme-light');
   }, []);
 
   React.useEffect(() => {
