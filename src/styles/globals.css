@@ -105,7 +105,7 @@
   }
   .external-link::after {
     content: '';
-    @apply bg-link-dark dark:bg-link bg-no-repeat bg-cover inline-block h-[.875rem] w-[.875rem];
+    @apply bg-[url('./../assets/icons/arrow-up-right-dark.svg')] dark:bg-[url('./../assets/icons/arrow-up-right.svg')] bg-no-repeat bg-cover inline-block h-[.875rem] w-[.875rem];
   }
   .link::before,
   .external-link::before {

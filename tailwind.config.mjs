@@ -15,10 +15,10 @@ export default {
     },
     extend: {
       backgroundImage: {
-        link: 'url("./src/assets/icons/arrow-up-right.svg")',
-        'link-dark': 'url("./src/assets/icons/arrow-up-right-dark.svg")',
-        'logo-dark': 'url("./src/assets/logo-dark.svg")',
-        logo: 'url("./src/assets/logo.svg")',
+        link: 'url("./src/assets/icons/arrow-up-right.svg?raw")',
+        'link-dark': 'url("./src/assets/icons/arrow-up-right-dark.svg?raw")',
+        'logo-dark': 'url("./src/assets/logo-dark.svg?raw")',
+        logo: 'url("./src/assets/logo.svg?raw")',
       },
       colors: {
         border: 'hsl(var(--border))',
