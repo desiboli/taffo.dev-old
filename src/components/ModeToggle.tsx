@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { useStore } from '@nanostores/react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -8,56 +7,35 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { changeGiscusTheme } from './giscus';
+import { DotIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { THEME_MAP, type ThemeKey, themeStore } from '@/store/theme';
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<
-    'theme-light' | 'dark' | 'system'
-  >('theme-light');
-
-  React.useEffect(() => {
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    setThemeState(isDarkMode ? 'dark' : 'theme-light');
-    changeGiscusTheme(isDarkMode ? 'dark' : 'theme-light');
-  }, []);
-
-  React.useEffect(() => {
-    const isDark =
-      theme === 'dark' ||
-      (theme === 'system' &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches);
-    changeGiscusTheme(isDark ? 'dark' : 'theme-light');
-    document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
-  }, [theme]);
+  const theme = useStore(themeStore);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem
-          onClick={() => setThemeState('theme-light')}
-          className="flex justify-between items-center"
-        >
-          Light {theme === 'theme-light' && <span className="ml-1">・</span>}
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setThemeState('dark')}
-          className="flex justify-between items-center"
-        >
-          Dark {theme === 'dark' && <span className="ml-1">・</span>}
-        </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={() => setThemeState('system')}
-          className="flex justify-between items-center"
-        >
-          System {theme === 'system' && <span className="ml-1">・</span>}
-        </DropdownMenuItem>
+        {Object.keys(THEME_MAP).map((key) => {
+          const themeKey = key as ThemeKey;
+          return (
+            <DropdownMenuItem
+              key={key}
+              className="justify-between capitalize"
+              onClick={() => themeStore.set(THEME_MAP[themeKey])}
+            >
+              {themeKey}
+              {theme === THEME_MAP[themeKey] && <DotIcon />}
+            </DropdownMenuItem>
+          );
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const giscusThemes = {
-  'theme-light': 'https://giscus.app/themes/noborder_light.css',
+  light: 'https://giscus.app/themes/noborder_light.css',
   dark: 'https://giscus.app/themes/noborder_gray.css',
 } as const;
 
@@ -27,9 +27,7 @@ export const changeGiscusTheme = (theme: keyof typeof giscusThemes) => {
 export const GiscusSection = (props: React.HTMLAttributes<HTMLElement>) => {
   useEffect(() => {
     const theme: keyof typeof giscusThemes =
-      document.documentElement.classList.contains('dark')
-        ? 'dark'
-        : 'theme-light';
+      document.documentElement.classList.contains('dark') ? 'dark' : 'light';
 
     const giscusAttributes = {
       src: 'https://giscus.app/client.js',
