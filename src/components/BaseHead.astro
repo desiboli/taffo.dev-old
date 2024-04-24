@@ -1,32 +1,32 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '@/styles/globals.css';
-import { ViewTransitions } from 'astro:transitions';
+import '@/styles/globals.css'
+// import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
+  title: string
+  description: string
+  image?: string
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
+const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props
 
 // Font Display
-import '@fontsource/cormorant-garamond/300.css';
-import '@fontsource/cormorant-garamond/400.css';
-import '@fontsource/cormorant-garamond/500.css';
-import '@fontsource/cormorant-garamond/600.css';
-import '@fontsource/cormorant-garamond/700.css';
+import '@fontsource/cormorant-garamond/300.css'
+import '@fontsource/cormorant-garamond/400.css'
+import '@fontsource/cormorant-garamond/500.css'
+import '@fontsource/cormorant-garamond/600.css'
+import '@fontsource/cormorant-garamond/700.css'
 
 // Font body
-import '@fontsource/halant/300.css';
-import '@fontsource/halant/400.css';
-import '@fontsource/halant/500.css';
-import '@fontsource/halant/600.css';
-import '@fontsource/halant/700.css';
+import '@fontsource/halant/300.css'
+import '@fontsource/halant/400.css'
+import '@fontsource/halant/500.css'
+import '@fontsource/halant/600.css'
+import '@fontsource/halant/700.css'
 ---
 
 <!-- Global Metadata -->
@@ -73,4 +73,4 @@ import '@fontsource/halant/700.css';
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-<ViewTransitions />
+<!-- <ViewTransitions /> -->
