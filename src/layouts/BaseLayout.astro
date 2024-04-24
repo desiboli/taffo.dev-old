@@ -1,32 +1,32 @@
 ---
-import '@/styles/globals.css';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import TailwindIndicator from '@/components/TailwindIndicator.astro';
-import { STORAGE_THEME_KEY, THEME_MAP } from '@/store/theme';
+import '@/styles/globals.css'
+import BaseHead from '../components/BaseHead.astro'
+import Footer from '../components/Footer.astro'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import TailwindIndicator from '@/components/TailwindIndicator.astro'
+import { STORAGE_THEME_KEY, THEME_MAP } from '@/store/theme'
 
-const isProd = import.meta.env.PROD;
+const isProd = import.meta.env.PROD
 ---
 
 <script is:inline define:vars={{ STORAGE_THEME_KEY, THEME_MAP }}>
   function setDarkMode(document) {
-    const userTheme = localStorage.getItem(STORAGE_THEME_KEY);
+    const userTheme = localStorage.getItem(STORAGE_THEME_KEY)
 
     if (
       userTheme === THEME_MAP.dark ||
       (!userTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add('dark')
     }
   }
 
-  setDarkMode(document);
+  setDarkMode(document)
 
   document.addEventListener('astro:before-swap', (ev) => {
     // Pass the incoming document to set the theme on it
-    setDarkMode(ev.newDocument);
-  });
+    setDarkMode(ev.newDocument)
+  })
 </script>
 
 <!-- <script is:inline>
