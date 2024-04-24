@@ -1,18 +1,18 @@
 ---
-import { ModeToggle } from '@/components/ModeToggle';
-import type { BreadcrumbsProps } from '@/components/Breadcrumb';
+import { ModeToggle } from '@/components/ModeToggle'
+import type { BreadcrumbsProps } from '@/components/Breadcrumb'
 
 interface Props {
-  title: string;
-  breadcrumbItems: BreadcrumbsProps[];
+  title: string
+  breadcrumbItems: BreadcrumbsProps[]
 }
 
-const { title } = Astro.props;
+const { title } = Astro.props
 ---
 
 <header>
   <div class="flex justify-between items-center">
     <h1 class="font-display up text-lg">{title}</h1>
-    <ModeToggle client:load />
+    <ModeToggle client:only />
   </div>
 </header>
