@@ -5,8 +5,7 @@ import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 import TailwindIndicator from '@/components/TailwindIndicator.astro'
 import { STORAGE_THEME_KEY, THEME_MAP } from '@/store/theme'
-
-const isProd = import.meta.env.PROD
+import { isProd } from '@/lib/utils'
 ---
 
 <script is:inline define:vars={{ STORAGE_THEME_KEY, THEME_MAP }}>
