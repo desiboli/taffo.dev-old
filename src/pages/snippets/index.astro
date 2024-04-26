@@ -8,22 +8,20 @@ import FormattedDate from '@/components/FormattedDate.astro'
 const items: BreadcrumbsProps[] = [
   { href: '/', label: 'Home' },
   { href: '/writing', label: 'Writing' },
-  { label: 'Notes' },
-  { href: '/snippets', label: 'Snippets' },
+  { href: '/notes', label: 'Notes' },
+  { label: 'Snippets' },
 ]
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-)
+const snippets = await getCollection('snippets')
 ---
 
 <BaseLayout>
   <section>
-    <Header title="Notes" breadcrumbItems={items} />
+    <Header title="Snippets" breadcrumbItems={items} />
 
     <div class="flex flex-col text-sm mb-10">
       <p>
-        A space for recording useful knowledge – by <a
+        A space for sharing useful code snippets – by <a
           href="/"
           class="link ml-1">Taffo</a
         >
@@ -35,15 +33,15 @@ const posts = (await getCollection('blog')).sort(
 
     <div class="columns-1 md:columns-2 text-sm text-justify">
       <p>
-        A curated collection of insights and wisdom that captivate my curiosity.
-        Here, I diligently document invaluable knowledge and observations,
-        fostering a habit of continuous learning and reflection. By sharing
-        these notes, my aspiration is to contribute to the collective wisdom of
-        others while deepening my own understanding.
+        A handy collection of code gems! Dive in and discover a variety of quick
+        one-liners and slightly fancier tricks. Feel free to copy and paste
+        these snippets directly into your projects to save time and effort.
       </p>
       <p>
-        May this repository serve as a beacon of enlightenment and inspiration
-        for all who explore its contents.
+        Whether you're looking to streamline your workflow or add a touch of
+        magic to your code, these snippets are here to help. Do you have a cool
+        snippet to share? Let me know—I'm always excited to exchange coding
+        tricks and tips.
       </p>
     </div>
   </section>
@@ -51,15 +49,15 @@ const posts = (await getCollection('blog')).sort(
   <section>
     <ul class="border-t mt-10 py-10 space-y-4 [&:hover>li]:opacity-50">
       {
-        posts.map((post) => (
+        snippets.map((snippet) => (
           <li class="transition hover:!opacity-100">
             <a
-              href={`/blog/${post.slug}/`}
+              href={`/snippets/${snippet.slug}/`}
               class="flex justify-between items-center py-4"
             >
-              <h4 class="text-xl">{post.data.title}</h4>
+              <h4 class="text-xl">{snippet.data.title}</h4>
               <p class="date">
-                <FormattedDate date={post.data.pubDate} />
+                <FormattedDate date={snippet.data.pubDate} />
               </p>
             </a>
           </li>

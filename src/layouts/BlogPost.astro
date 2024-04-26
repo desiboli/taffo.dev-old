@@ -12,14 +12,8 @@ import { isProd } from '@/lib/utils'
 
 type Props = CollectionEntry<'blog'>['data']
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props
-
-const items: BreadcrumbsProps[] = [
-  { href: '/', label: 'Home' },
-  { href: '/writing', label: 'Writing', isActive: true },
-  { href: '/notes', label: 'Notes' },
-  { href: '/playground', label: 'Playground' },
-]
+const { isDraft, title, description, pubDate, updatedDate, heroImage } =
+  Astro.props
 ---
 
 <script is:inline>
@@ -69,6 +63,7 @@ const items: BreadcrumbsProps[] = [
     </div>
     <main class="max-w-screen-sm w-full mx-auto pt-32 flex-1">
       <div class="container">
+        {isDraft && <p>(draft)</p>}
         <Header title={`${title}`} breadcrumbItems={[]} />
 
         <div class="flex flex-col text-sm mb-10">
@@ -83,7 +78,7 @@ const items: BreadcrumbsProps[] = [
             }
           </p>
           <div class="flex items-center gap-x-6 mt-1">
-            <Breadcrumbs client:load breadcrumbItems={items} />
+            <slot name="breadcrumbs" />
           </div>
         </div>
 
