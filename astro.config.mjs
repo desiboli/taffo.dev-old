@@ -10,12 +10,12 @@ import rehypeSlug from 'rehype-slug'
 // import remarkBreaks from 'remark-breaks'
 // import remarkGfm from 'remark-gfm'
 import rehypeSectionize from '@hbsnow/rehype-sectionize'
-import vercel from '@astrojs/vercel/serverless'
+import vercel from '@astrojs/vercel/static'
 
 // https://astro.build/config
 /** @type {import('astro/config').defineConfig} */
 export default defineConfig({
-  output: 'server',
+  output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: true },
   }),

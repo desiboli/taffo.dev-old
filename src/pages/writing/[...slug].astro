@@ -1,8 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import BlogPost from '../../layouts/BlogPost.astro'
+import BlogPost from '@/layouts/BlogPost.astro'
 import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
-// import TableOfContents from '@/components/TableOfContents.astro'
 import TableOfContents from '@/components/TableOfContents'
 import Prose from '@/components/Prose.astro'
 import generateToc from '@/lib/generateToc'
@@ -25,8 +24,6 @@ const items: BreadcrumbsProps[] = [
   { href: '/notes', label: 'Notes' },
   { href: '/snippets', label: 'Snippets' },
 ]
-
-console.log('headings>>>', headings)
 ---
 
 <BlogPost {...post.data}>
@@ -45,8 +42,6 @@ console.log('headings>>>', headings)
       </Fragment>
     )
   }
-
-  <!-- <TableOfContents slot="aside" headings={headings} /> -->
 
   <Prose>
     <Content />
