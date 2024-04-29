@@ -10,6 +10,7 @@ import rehypeSlug from 'rehype-slug'
 // import remarkBreaks from 'remark-breaks'
 // import remarkGfm from 'remark-gfm'
 import rehypeSectionize from '@hbsnow/rehype-sectionize'
+import vercel from '@astrojs/vercel/serverless'
 
 // https://astro.build/config
 /** @type {import('astro/config').defineConfig} */
