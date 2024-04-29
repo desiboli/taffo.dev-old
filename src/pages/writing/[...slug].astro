@@ -1,0 +1,54 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import BlogPost from '../../layouts/BlogPost.astro'
+import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
+// import TableOfContents from '@/components/TableOfContents.astro'
+import TableOfContents from '@/components/TableOfContents'
+import Prose from '@/components/Prose.astro'
+import generateToc from '@/lib/generateToc'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writing')
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+type Props = CollectionEntry<'writing'>
+
+const post = Astro.props
+const { Content, headings } = await post.render()
+
+const items: BreadcrumbsProps[] = [
+  { href: '/', label: 'Home' },
+  { href: '/writing', label: 'Writing', isActive: true },
+  { href: '/notes', label: 'Notes' },
+  { href: '/snippets', label: 'Snippets' },
+]
+
+console.log('headings>>>', headings)
+---
+
+<BlogPost {...post.data}>
+  <Breadcrumbs slot="breadcrumbs" client:load breadcrumbItems={items} />
+
+  {
+    headings && (
+      <Fragment slot="aside">
+        <nav>
+          <TableOfContents
+            client:media="(min-width: 64em)"
+            toc={generateToc(headings)}
+            isMobile={false}
+          />
+        </nav>
+      </Fragment>
+    )
+  }
+
+  <!-- <TableOfContents slot="aside" headings={headings} /> -->
+
+  <Prose>
+    <Content />
+  </Prose>
+</BlogPost>

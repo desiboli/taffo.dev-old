@@ -14,7 +14,7 @@ const items: BreadcrumbsProps[] = [
 ]
 
 // Draft posts available during local dev, but not built in production.
-const posts = await getCollection('blog', ({ data }) => {
+const posts = await getCollection('writing', ({ data }) => {
   return isProd ? data.isDraft !== true : true
 })
 
@@ -58,7 +58,7 @@ const sortedPosts = posts.sort(
         sortedPosts.map((post) => (
           <li class="transition hover:!opacity-100">
             <a
-              href={`/blog/${post.slug}/`}
+              href={`/writing/${post.slug}/`}
               class="flex justify-between items-center py-4"
             >
               <h4 class="text-xl">{post.data.title}</h4>

@@ -8,8 +8,9 @@ import TailwindIndicator from '@/components/TailwindIndicator.astro'
 import Header from '@/components/Header.astro'
 import { GiscusSection } from '@/components/giscus'
 import { isProd } from '@/lib/utils'
+import Prose from '@/components/Prose.astro'
 
-type Props = CollectionEntry<'blog'>['data']
+type Props = CollectionEntry<'writing'>['data']
 
 const { isDraft, title, description, pubDate, updatedDate, heroImage } =
   Astro.props
@@ -61,6 +62,11 @@ const { isDraft, title, description, pubDate, updatedDate, heroImage } =
     >
     </div>
     <main class="max-w-screen-sm w-full mx-auto pt-32 flex-1">
+      <aside
+        class="fixed top-32 max-w-[220px] -translate-x-[220px] translate-y-[124px] flex-col hidden lg:flex"
+      >
+        <slot name="aside" />
+      </aside>
       <div class="container">
         {isDraft && <p>(draft)</p>}
         <Header title={`${title}`} breadcrumbItems={[]} />

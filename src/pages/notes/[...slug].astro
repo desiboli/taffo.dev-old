@@ -4,27 +4,29 @@ import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 
 export async function getStaticPaths() {
-  const snippets = await getCollection('snippets')
-  return snippets.map((snippet) => ({
-    params: { slug: snippet.slug },
-    props: snippet,
+  const notes = await getCollection('notes')
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+    props: note,
   }))
 }
-type Props = CollectionEntry<'snippets'>
+type Props = CollectionEntry<'notes'>
 
-const snippet = Astro.props
-const { Content } = await snippet.render()
+const note = Astro.props
+const { Content, headings } = await note.render()
 
 const items: BreadcrumbsProps[] = [
   { href: '/', label: 'Home' },
   { href: '/writing', label: 'Writing' },
-  { href: '/notes', label: 'Notes' },
-  { href: '/snippets', label: 'Snippets', isActive: true },
+  { href: '/notes', label: 'Notes', isActive: true },
+  { href: '/snippets', label: 'Snippets' },
 ]
 ---
 
 <BaseLayout>
   <Breadcrumbs slot="breadcrumbs" client:load breadcrumbItems={items} />
+
+  <h1>{note.data.title}</h1>
 
   <Content />
 </BaseLayout>

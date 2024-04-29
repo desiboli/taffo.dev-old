@@ -12,7 +12,7 @@ const items: BreadcrumbsProps[] = [
   { href: '/snippets', label: 'Snippets' },
 ]
 
-const posts = (await getCollection('blog')).sort(
+const notes = (await getCollection('notes')).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 )
 ---
@@ -51,15 +51,15 @@ const posts = (await getCollection('blog')).sort(
   <section>
     <ul class="border-t mt-10 py-10 space-y-4 [&:hover>li]:opacity-50">
       {
-        posts.map((post) => (
+        notes.map((note) => (
           <li class="transition hover:!opacity-100">
             <a
-              href={`/blog/${post.slug}/`}
+              href={`/notes/${note.slug}/`}
               class="flex justify-between items-center py-4"
             >
-              <h4 class="text-xl">{post.data.title}</h4>
+              <h4 class="text-xl">{note.data.title}</h4>
               <p class="date">
-                <FormattedDate date={post.data.pubDate} />
+                <FormattedDate date={note.data.pubDate} />
               </p>
             </a>
           </li>

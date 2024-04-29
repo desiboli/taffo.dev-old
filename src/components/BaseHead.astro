@@ -3,6 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import '@/styles/globals.css'
 import { ViewTransitions } from 'astro:transitions'
+import SpeedInsights from '@vercel/speed-insights/astro'
 
 interface Props {
   title: string
@@ -57,4 +58,5 @@ import '@fontsource/halant/700.css'
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
+<SpeedInsights />
 <ViewTransitions />

@@ -1,4 +1,4 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultTheme from 'tailwindcss/defaultTheme'
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -79,10 +79,18 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: '100ch', // add required value here
+          },
+        },
+      },
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
     require('tailwind-gradient-mask-image'),
   ],
-};
+}
