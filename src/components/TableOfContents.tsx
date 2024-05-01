@@ -118,7 +118,7 @@ const TableOfContents = ({ toc = [], labels, isMobile }: Props) => {
           className={`header-link depth-${depth} text-sm ${
             currentHeading.slug === slug
               ? 'text-foreground'
-              : 'text-foreground/70'
+              : 'text-foreground/60'
           }`.trim()}
           href={`#${slug}`}
           onClick={onLinkClick}
