@@ -72,10 +72,13 @@ import { isProd } from '@/lib/utils'
       class="bg-background/95 h-28 fixed left-0 top-0 w-full backdrop-blur-sm gradient-mask-b-0"
     >
     </div>
-    <main class="max-w-screen-sm w-full mx-auto pt-32 flex-1">
-      <div class="container">
+    <!-- max-w-screen-sm w-full mx-auto  -->
+    <main class="pt-32 flex-1">
+      <!-- <div class="container"> -->
+      <div class="content-grid">
         <slot />
       </div>
+      <!-- </div> -->
     </main>
 
     <Footer />
