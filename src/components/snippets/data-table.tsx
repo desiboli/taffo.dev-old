@@ -1,14 +1,16 @@
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
 import { columns } from '@/components/snippets/columns'
-import { Input } from '@/components/ui/input'
 
 import {
   type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
+  type VisibilityState,
   flexRender,
   getCoreRowModel,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
@@ -23,12 +25,15 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { DataTableToolbar } from './data-table-toolbar'
 
 interface DataTableProps<TData> {
   data: TData[]
 }
 
 export function DataTable<TData>({ data }: DataTableProps<TData>) {
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({})
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -42,25 +47,20 @@ export function DataTable<TData>({ data }: DataTableProps<TData>) {
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
+    onColumnVisibilityChange: setColumnVisibility,
     getFilteredRowModel: getFilteredRowModel(),
+    getFacetedRowModel: getFacetedRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
     state: {
       sorting,
+      columnVisibility,
       columnFilters,
     },
   })
 
   return (
-    <div>
-      <div className="flex items-center py-4">
-        <Input
-          placeholder="Filter snippets..."
-          value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
-          onChange={(event) =>
-            table.getColumn('title')?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-      </div>
+    <div className="space-y-4">
+      <DataTableToolbar table={table} />
 
       <div className="rounded-md border">
         <Table>

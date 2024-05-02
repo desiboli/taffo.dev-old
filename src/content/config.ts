@@ -34,7 +34,7 @@ const snippetsCollection = defineCollection({
     isDraft: z.boolean(),
     title: z.string(),
     description: z.string(),
-    tags: z.array(z.string()),
+    category: z.string(),
     // Transform string to Date object
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
