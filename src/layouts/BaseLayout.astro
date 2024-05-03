@@ -5,6 +5,7 @@ import Footer from '../components/Footer.astro'
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
 import TailwindIndicator from '@/components/TailwindIndicator.astro'
 import { STORAGE_THEME_KEY, THEME_MAP } from '@/store/theme'
+import Logo from '@/assets/logo.svg?raw'
 import { isProd } from '@/lib/utils'
 ---
 
@@ -72,6 +73,9 @@ import { isProd } from '@/lib/utils'
       class="bg-background/95 h-28 fixed left-0 top-0 w-full backdrop-blur-sm gradient-mask-b-0"
     >
     </div>
+    <a href="/" class="absolute left-1/2 -translate-x-1/2 my-10 opacity-5">
+      <Fragment set:html={Logo} />
+    </a>
     <!-- max-w-screen-sm w-full mx-auto  -->
     <main class="pt-32 flex-1">
       <!-- <div class="container"> -->

@@ -2,6 +2,10 @@
 import { type CollectionEntry, getCollection } from 'astro:content'
 import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import TableOfContents from '@/components/TableOfContents'
+import generateToc from '@/lib/generateToc'
+import Prose from '@/components/Prose.astro'
+import BlogPost from '@/layouts/BlogPost.astro'
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes')
@@ -23,10 +27,24 @@ const items: BreadcrumbsProps[] = [
 ]
 ---
 
-<BaseLayout>
+<BlogPost {...note.data}>
   <Breadcrumbs slot="breadcrumbs" client:load breadcrumbItems={items} />
 
-  <h1>{note.data.title}</h1>
+  {
+    headings && (
+      <Fragment slot="aside">
+        <nav>
+          <TableOfContents
+            client:media="(min-width: 64em)"
+            toc={generateToc(headings)}
+            isMobile={false}
+          />
+        </nav>
+      </Fragment>
+    )
+  }
 
-  <Content />
-</BaseLayout>
+  <Prose>
+    <Content />
+  </Prose>
+</BlogPost>

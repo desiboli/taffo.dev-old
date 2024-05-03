@@ -7,6 +7,14 @@ export const columns: ColumnDef<any, any>[] = [
     id: 'title',
     accessorKey: 'data.title',
     header: 'Title',
+    cell: ({ row }) => {
+      console.log('row>>>', row)
+      return (
+        <a href={`snippets/${row.original.slug}`} className="font-bold text-xl">
+          {row.getValue('title')}
+        </a>
+      )
+    },
   },
   {
     accessorKey: 'data.description',

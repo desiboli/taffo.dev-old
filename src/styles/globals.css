@@ -63,7 +63,7 @@
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted-foreground: 0 73% 96% / 52% /* rgb(252, 237, 237, .52) */;
 
     --accent: 0 0% 15% /* #252525 */;
     --accent-foreground: 210 40% 98%;
@@ -94,7 +94,7 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
-    opacity: 15%;
+    opacity: 5%;
   }
   .external-link {
     @apply text-foreground;

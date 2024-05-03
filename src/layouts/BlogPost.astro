@@ -7,10 +7,10 @@ import FormattedDate from '../components/FormattedDate.astro'
 import TailwindIndicator from '@/components/TailwindIndicator.astro'
 import Header from '@/components/Header.astro'
 import { GiscusSection } from '@/components/giscus'
+import Logo from '@/assets/logo.svg?raw'
 import { isProd } from '@/lib/utils'
-import Prose from '@/components/Prose.astro'
 
-type Props = CollectionEntry<'writing'>['data']
+type Props = CollectionEntry<'writing' | 'notes'>['data']
 
 const { isDraft, title, description, pubDate, updatedDate, heroImage } =
   Astro.props
@@ -61,13 +61,16 @@ const { isDraft, title, description, pubDate, updatedDate, heroImage } =
       class="bg-background/95 h-28 fixed left-0 top-0 w-full backdrop-blur-sm gradient-mask-b-0"
     >
     </div>
-    <main class="max-w-screen-sm w-full mx-auto pt-32 flex-1">
+    <a href="/" class="absolute left-1/2 -translate-x-1/2 my-10 opacity-5 z-10">
+      <Fragment set:html={Logo} />
+    </a>
+    <main class="content-grid relative pt-32 flex-1">
       <aside
         class="fixed top-32 max-w-[220px] -translate-x-[220px] translate-y-[124px] flex-col hidden lg:flex"
       >
         <slot name="aside" />
       </aside>
-      <div class="container">
+      <div>
         {isDraft && <p>(draft)</p>}
         <Header title={`${title}`} breadcrumbItems={[]} />
 
