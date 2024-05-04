@@ -1,6 +1,5 @@
 import { type ColumnDef } from '@tanstack/react-table'
 import { format } from 'date-fns'
-import { categories } from './data-table-toolbar'
 
 export const columns: ColumnDef<any, any>[] = [
   {

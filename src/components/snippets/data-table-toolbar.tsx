@@ -10,7 +10,7 @@ interface DataTableToolbarProps<TData> {
   table: Table<TData>
 }
 
-export const categories = [
+const categories = [
   {
     value: 'React',
     label: 'React',

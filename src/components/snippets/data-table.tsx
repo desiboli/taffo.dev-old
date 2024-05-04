@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button'
 import { columns } from '@/components/snippets/columns'
 
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   type SortingState,
   type VisibilityState,

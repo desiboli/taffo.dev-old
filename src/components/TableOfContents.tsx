@@ -10,7 +10,7 @@ interface Props {
   isMobile?: boolean
 }
 
-const TableOfContents = ({ toc = [], labels, isMobile }: Props) => {
+const TableOfContents = ({ toc = [], isMobile }: Props) => {
   const [currentHeading, setCurrentHeading] = useState({
     slug: toc[0]?.slug,
     text: toc[0]?.text,
@@ -34,36 +34,36 @@ const TableOfContents = ({ toc = [], labels, isMobile }: Props) => {
     )
   }
 
-  const HeadingContainer = ({ children }: { children: JSX.Element }) => {
-    return isMobile ? (
-      <summary className="toc-mobile-header">
-        <div className="toc-mobile-header-content">
-          <div className="toc-toggle">
-            {children}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 1 16 16"
-              width="16"
-              height="16"
-              aria-hidden="true"
-            >
-              <path
-                fillRule="evenodd"
-                d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"
-              ></path>
-            </svg>
-          </div>
-          {!open && currentHeading?.slug !== 'overview' && (
-            <span className="toc-current-heading">
-              {unescape(currentHeading?.text || '')}
-            </span>
-          )}
-        </div>
-      </summary>
-    ) : (
-      children
-    )
-  }
+  // const HeadingContainer = ({ children }: { children: JSX.Element }) => {
+  //   return isMobile ? (
+  //     <summary className="toc-mobile-header">
+  //       <div className="toc-mobile-header-content">
+  //         <div className="toc-toggle">
+  //           {children}
+  //           <svg
+  //             xmlns="http://www.w3.org/2000/svg"
+  //             viewBox="0 1 16 16"
+  //             width="16"
+  //             height="16"
+  //             aria-hidden="true"
+  //           >
+  //             <path
+  //               fillRule="evenodd"
+  //               d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"
+  //             ></path>
+  //           </svg>
+  //         </div>
+  //         {!open && currentHeading?.slug !== 'overview' && (
+  //           <span className="toc-current-heading">
+  //             {unescape(currentHeading?.text || '')}
+  //           </span>
+  //         )}
+  //       </div>
+  //     </summary>
+  //   ) : (
+  //     children
+  //   )
+  // }
 
   useEffect(() => {
     const setCurrent: IntersectionObserverCallback = (entries) => {
