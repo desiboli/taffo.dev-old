@@ -4,6 +4,7 @@ import Header from '@/components/Header.astro'
 import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
 import { getCollection } from 'astro:content'
 import FormattedDate from '@/components/FormattedDate.astro'
+import { isProd } from '@/lib/utils'
 
 const items: BreadcrumbsProps[] = [
   { href: '/', label: 'Home' },
@@ -12,7 +13,13 @@ const items: BreadcrumbsProps[] = [
   { href: '/snippets', label: 'Snippets' },
 ]
 
-const notes = (await getCollection('notes')).sort(
+// Draft posts available during local dev, but not built in production.
+const notes = await getCollection('notes', ({ data }) => {
+  return isProd ? data.isDraft !== true : true
+})
+
+// Sort posts by published date, latest first (top to bottom).
+const sortedNotes = notes.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 )
 ---
@@ -51,7 +58,7 @@ const notes = (await getCollection('notes')).sort(
   <section>
     <ul class="border-t mt-10 py-10 space-y-4 [&:hover>li]:opacity-50">
       {
-        notes.map((note) => (
+        sortedNotes.map((note) => (
           <li class="transition hover:!opacity-100">
             <a
               href={`/notes/${note.slug}/`}

@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
 import Header from '@/components/Header.astro'
 import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
 import { getCollection } from 'astro:content'
-import FormattedDate from '@/components/FormattedDate.astro'
 import { DataTable } from '@/components/snippets/data-table'
+import { isProd } from '@/lib/utils'
 
 const items: BreadcrumbsProps[] = [
   { href: '/', label: 'Home' },
@@ -13,9 +13,15 @@ const items: BreadcrumbsProps[] = [
   { label: 'Snippets' },
 ]
 
-const snippets = await getCollection('snippets')
+// Draft posts available during local dev, but not built in production.
+const snippets = await getCollection('snippets', ({ data }) => {
+  return isProd ? data.isDraft !== true : true
+})
 
-console.log('snippets>>>', snippets)
+// Sort posts by published date, latest first (top to bottom).
+const sortedSnippets = snippets.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+)
 ---
 
 <BaseLayout>
@@ -49,27 +55,7 @@ console.log('snippets>>>', snippets)
     </div>
   </section>
 
-  <!-- <section>
-    <ul class="border-t mt-10 py-10 space-y-4 [&:hover>li]:opacity-50">
-      {
-        snippets.map((snippet) => (
-          <li class="transition hover:!opacity-100">
-            <a
-              href={`/snippets/${snippet.slug}/`}
-              class="flex justify-between items-center py-4"
-            >
-              <h4 class="text-xl">{snippet.data.title}</h4>
-              <p class="date">
-                <FormattedDate date={snippet.data.pubDate} />
-              </p>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </section> -->
-
   <section class="breakout">
-    <DataTable client:load data={snippets} />
+    <DataTable client:load data={sortedSnippets} />
   </section>
 </BaseLayout>
