@@ -6,6 +6,7 @@ import { AtSign } from 'lucide-react'
 import Github from '@/assets/icons/github.svg?raw'
 import Twitter from '@/assets/icons/x.svg?raw'
 import LinkedIn from '@/assets/icons/linkedin.svg?raw'
+import Notion from '@/assets/icons/notion.svg?raw'
 import Picture1 from '@/assets/images/picture1.webp'
 import Picture2 from '@/assets/images/picture2.webp'
 import Picture3 from '@/assets/images/picture3.webp'
@@ -21,6 +22,8 @@ import Picture6 from '@/assets/images/picture6.webp'
     <div class="relative mb-4 h-40">
       <Image
         src={Picture1}
+        widths={[280, 190]}
+        sizes={`(max-width: 640px) 280px, (min-width: 768px) 190px`}
         alt="Me and my sister."
         class="w-full h-full object-cover rounded-lg"
       />
@@ -28,6 +31,8 @@ import Picture6 from '@/assets/images/picture6.webp'
     <div class="relative mb-4 h-80 md:mb-0">
       <Image
         src={Picture2}
+        widths={[280, 500]}
+        sizes={`(max-width: 640px) 280px, (min-width: 768px) 500px`}
         alt="Me and Noél having fun with the leaves."
         class="w-full h-full object-cover rounded-lg"
       />
@@ -35,6 +40,8 @@ import Picture6 from '@/assets/images/picture6.webp'
     <div class="relative h-40 md:mb-4 md:h-80">
       <Image
         src={Picture3}
+        widths={[280, 700]}
+        sizes={`(max-width: 640px) 280px, (min-width: 768px) 700px`}
         alt="Me and a pregnant Amanda, walking together."
         class="w-full h-full object-cover rounded-lg"
       />
@@ -42,6 +49,8 @@ import Picture6 from '@/assets/images/picture6.webp'
     <div class="relative mb-4 h-40 md:mb-0 bg-foreground/10 rounded-lg">
       <Image
         src={Picture4}
+        widths={[280, 190]}
+        sizes={`(max-width: 640px) 280px, (min-width: 768px) 190px`}
         alt="Me and the alps."
         class="w-full h-full object-cover rounded-lg"
       />
@@ -49,6 +58,8 @@ import Picture6 from '@/assets/images/picture6.webp'
     <div class="relative mb-4 h-40 bg-foreground/10 rounded-lg">
       <Image
         src={Picture5}
+        widths={[280, 190]}
+        sizes={`(max-width: 640px) 280px, (min-width: 768px) 190px`}
         alt="Younger me and my brother."
         class="w-full h-full object-cover md:object-top rounded-lg"
       />
@@ -56,6 +67,8 @@ import Picture6 from '@/assets/images/picture6.webp'
     <div class="h-80">
       <Image
         src={Picture6}
+        widths={[280, 500]}
+        sizes={`(max-width: 640px) 280px, (min-width: 768px) 500px`}
         alt="Me and Noél looking at the beautiful trees."
         class="w-full h-full object-cover rounded-lg"
       />
@@ -85,20 +98,36 @@ import Picture6 from '@/assets/images/picture6.webp'
     >
       <AtSign className="w-4 h-4" />
     </a>
-    <a href="https://github.com/desiboli" class="icon-link w-6 h-6">
+    <a
+      href="https://github.com/desiboli"
+      class="icon-link w-6 h-6"
+      target="_blank"
+    >
       <Fragment set:html={Github} />
     </a>
-    <a href="https://twitter.com/AdamAlshammaa" class="icon-link w-6 h-6">
+    <a
+      href="https://twitter.com/AdamAlshammaa"
+      class="icon-link w-6 h-6"
+      target="_blank"
+    >
       <Fragment set:html={Twitter} />
     </a>
     <a
       href="https://www.linkedin.com/in/mustafa-alshammaa/"
       class="icon-link w-6 h-6"
+      target="_blank"
     >
       <Fragment set:html={LinkedIn} />
     </a>
+    <a
+      href="https://www.notion.so/Curriculum-Vitae-050001a582e74e87ac59616cb6769d80?pvs=4"
+      class="icon-link w-auto h-6 inline-flex items-center gap-1"
+      target="_blank"
+    >
+      <Fragment set:html={Notion} />
+      <span class="leading-[normal] text-xs">Resume</span>
+    </a>
   </div>
-
   <div class="grid grid-cols-4 mt-10">
     <h2
       class="text-foreground-secondary text-xl font-display uppercase col-span-full mb-4 md:col-span-1 md:mb-0"
