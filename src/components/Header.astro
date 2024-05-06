@@ -12,11 +12,11 @@ const { title } = Astro.props
 ---
 
 <header>
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center gap-2">
     <a href="/" aria-label="M logo" class="">
       <Fragment set:html={Logo} />
     </a>
-    <h1 class="font-display up text-lg">{title}</h1>
+    <h1 class="font-display up text-lg truncate" aria-label={title}>{title}</h1>
     <ModeToggle client:load />
   </div>
 </header>
