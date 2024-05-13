@@ -10,7 +10,7 @@ export const columns: ColumnDef<any, any>[] = [
       return (
         <a
           href={`snippets/${row.original.slug}`}
-          className="font-bold text-xl whitespace-nowrap"
+          className="font-bold underline underline-offset-8 hover:no-underline whitespace-nowrap"
         >
           {row.getValue('title')}
         </a>
@@ -20,6 +20,7 @@ export const columns: ColumnDef<any, any>[] = [
   {
     accessorKey: 'data.description',
     header: 'Description',
+    size: 400,
   },
   {
     id: 'category',
