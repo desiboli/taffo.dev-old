@@ -1,0 +1,17 @@
+---
+isDraft: false
+title: 'Get random color'
+description: 'Generate some random colors in JS.'
+category: 'Javascript'
+pubDate: 'May 13 2024'
+---
+
+For whatever reason, you might want to generate some random colors for an application. The following function will enable you to do just that!
+
+```js
+const getRandomColor = () => {
+  return "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
+};
+
+getRandomColor();
+```
