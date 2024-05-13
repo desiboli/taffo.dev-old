@@ -1,4 +1,4 @@
-import { Dot } from 'lucide-react';
+import { Dot } from 'lucide-react'
 
 import {
   Breadcrumb,
@@ -7,18 +7,18 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import React from 'react';
-import { cn } from '@/lib/utils';
+} from '@/components/ui/breadcrumb'
+import React from 'react'
+import { cn } from '@/lib/utils'
 
 export type BreadcrumbsProps = {
-  href?: string;
-  label: string;
-  isActive?: boolean;
-};
+  href?: string
+  label: string
+  isActive?: boolean
+}
 
 interface Props {
-  breadcrumbItems: BreadcrumbsProps[];
+  breadcrumbItems: BreadcrumbsProps[]
 }
 
 export function Breadcrumbs({ breadcrumbItems }: Props) {
@@ -33,6 +33,7 @@ export function Breadcrumbs({ breadcrumbItems }: Props) {
                   <BreadcrumbLink
                     href={item.href}
                     className={cn({
+                      'transition-colors': true,
                       'text-foreground': item.isActive,
                       'text-foreground-secondary': !item.isActive,
                     })}
@@ -55,5 +56,5 @@ export function Breadcrumbs({ breadcrumbItems }: Props) {
         ))}
       </BreadcrumbList>
     </Breadcrumb>
-  );
+  )
 }

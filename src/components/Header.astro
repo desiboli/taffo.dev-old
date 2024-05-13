@@ -1,18 +1,16 @@
 ---
 import { ModeToggle } from '@/components/ModeToggle'
-import type { BreadcrumbsProps } from '@/components/Breadcrumb'
 import Logo from '@/assets/logo.svg?raw'
 
 interface Props {
   title: string
-  breadcrumbItems: BreadcrumbsProps[]
 }
 
 const { title } = Astro.props
 ---
 
 <header>
-  <div class="flex justify-between items-center gap-2">
+  <div class="flex justify-between items-center gap-2 mb-4">
     <a href="/" aria-label="M logo" class="">
       <Fragment set:html={Logo} />
     </a>

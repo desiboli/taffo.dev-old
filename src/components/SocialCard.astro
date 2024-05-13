@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'a'> & {
+  label: string
+  tag: string
+}
+
+const { href, class: className, label, tag, ...props } = Astro.props
+---
+
+<a
+  href={href}
+  class:list={[
+    className,
+    'inline-flex flex-col bg-accent/50 rounded-md py-6 px-4 hover:bg-accent/90 transition-colors',
+  ]}
+  {...props}
+>
+  <slot />
+  <span>{label}</span>
+  <span class="text-xs mt-4">{tag}</span>
+</a>

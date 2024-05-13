@@ -8,18 +8,36 @@ import Twitter from '@/assets/icons/x.svg?raw'
 import LinkedIn from '@/assets/icons/linkedin.svg?raw'
 import Notion from '@/assets/icons/notion.svg?raw'
 import Picture3 from '@/assets/images/picture3.webp'
+import { Breadcrumbs, type BreadcrumbsProps } from '@/components/Breadcrumb'
+import SocialCard from '@/components/SocialCard.astro'
+
+const items: BreadcrumbsProps[] = [
+  { label: 'Home' },
+  { href: '/writing', label: 'Writing' },
+  { href: '/notes', label: 'Notes' },
+  { href: '/snippets', label: 'Snippets' },
+]
 ---
 
 <BaseLayout>
-  <Header title="Mustafa Adam Alshammaa ・ Taffo.dev" breadcrumbItems={[]} />
+  <Header title="Mustafa Adam Alshammaa ・ Taffo.dev" />
 
-  <div class="my-8 max-h-96 relative">
+  <div class="flex flex-col text-sm mb-10">
+    <p>
+      Welcome to my space – by <a href="/" class="link ml-1">Taffo</a>
+    </p>
+    <div class="flex items-center gap-x-6 mt-1">
+      <Breadcrumbs client:load breadcrumbItems={items} />
+    </div>
+  </div>
+
+  <div class="mb-10 max-h-96 relative">
     <Image
       src={Picture3}
       width={Picture3.width / 2}
       densities={[1.5, 2]}
-      alt="Me and my sister."
-      class="w-full h-full object-cover rounded-2xl grayscale"
+      alt="Me and my pregnant wife."
+      class="w-full h-full object-cover rounded-md grayscale"
     />
   </div>
 
@@ -39,71 +57,46 @@ import Picture3 from '@/assets/images/picture3.webp'
     <a href="https://www.rco.se/" class="external-link">RCO Security</a>
   </p>
 
-  <div class="mt-1">
-    <a
+  <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2">
+    <SocialCard
       href="mailto:adam.benals@gmail.com?subject=Contacting you from taffo.dev"
-      class="icon-link"
       aria-label="email me"
+      label="Email"
+      tag="@adam.benals"
     >
-      <AtSign className="w-4 h-4" />
-    </a>
-    <a
+      <AtSign className="w-10 h-10 mb-1" />
+    </SocialCard>
+    <SocialCard
       href="https://github.com/desiboli"
-      class="icon-link w-6 h-6"
       target="_blank"
+      label="Github"
+      tag="@desiboli"
     >
-      <Fragment set:html={Github} />
-    </a>
-    <a
+      <span class="w-10 h-10 mb-1"><Fragment set:html={Github} /></span>
+    </SocialCard>
+    <SocialCard
       href="https://twitter.com/AdamAlshammaa"
-      class="icon-link w-6 h-6"
       target="_blank"
+      label="Twitter"
+      tag="@adamalshammaa"
     >
-      <Fragment set:html={Twitter} />
-    </a>
-    <a
+      <span class="w-10 h-10 mb-1"><Fragment set:html={Twitter} /></span>
+    </SocialCard>
+    <SocialCard
       href="https://www.linkedin.com/in/mustafa-alshammaa/"
-      class="icon-link w-6 h-6"
       target="_blank"
+      label="LinkedIn"
+      tag="@mustafa-alshammaa"
     >
-      <Fragment set:html={LinkedIn} />
-    </a>
+      <span class="w-10 h-10 mb-1"><Fragment set:html={LinkedIn} /></span>
+    </SocialCard>
     <a
       href="https://www.notion.so/Curriculum-Vitae-050001a582e74e87ac59616cb6769d80?pvs=4"
-      class="icon-link w-auto h-6 inline-flex items-center gap-1"
+      class="inline-flex bg-accent/50 rounded-md py-6 px-4 col-span-2 sm:col-span-4 items-center hover:bg-accent/90 transition-colors"
       target="_blank"
     >
-      <Fragment set:html={Notion} />
-      <span class="leading-[normal] text-xs">Resume</span>
+      <span class="w-20 h-20"><Fragment set:html={Notion} /></span>
+      <span class="text-2xl mt-2">Curriculum Vitae</span>
     </a>
-  </div>
-  <div class="grid grid-cols-4 mt-10">
-    <h2
-      class="text-foreground-secondary text-xl font-display uppercase col-span-full mb-4 md:col-span-1 md:mb-0"
-    >
-      My space
-    </h2>
-    <nav class="col-span-3">
-      <ul class="space-y-4 whitespace-nowrap">
-        <li class="space-y-1">
-          <a href="/writing" class="link">Writing</a>
-          <p class="text-xs text-foreground-secondary">
-            A space for storing insights
-          </p>
-        </li>
-        <li class="space-y-1">
-          <a href="/notes" class="link">Notes</a>
-          <p class="text-xs text-foreground-secondary">
-            A space for recording useful knowledge
-          </p>
-        </li>
-        <li class="space-y-1">
-          <a href="/snippets" class="link">Snippets</a>
-          <p class="text-xs text-foreground-secondary">
-            A space for sharing useful code snippets
-          </p>
-        </li>
-      </ul>
-    </nav>
   </div>
 </BaseLayout>
